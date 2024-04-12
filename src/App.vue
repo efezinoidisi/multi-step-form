@@ -23,7 +23,20 @@ import StepTwo from "./components/StepTwo.vue";
 
 const currentStep = ref(0);
 
-const steps = [
+type StepValues = {
+  plan?: string;
+  period?: "monthly" | "yearly";
+  name?: string;
+  email?: string;
+  phone?: string;
+};
+
+type Step = {
+  values: StepValues;
+  completed: boolean;
+};
+
+const steps: Step[] = [
   {
     values: {
       name: "",

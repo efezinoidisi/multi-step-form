@@ -15,8 +15,14 @@
 
       <span class="wrap">
         <span class="heading">arcade</span>
-        <span>{{ plans[formData.values.period].arcade.price }}</span>
-        <span>{{ plans[formData.values.period].arcade.free }}</span>
+        <span>{{
+          plans[formData.values.period ? formData.values.period : "yearly"]
+            .arcade.price
+        }}</span>
+        <span>{{
+          plans[formData.values.period ? formData.values.period : "yearly"]
+            .arcade.free
+        }}</span>
       </span>
     </label>
     <label class="plan__label">
@@ -32,8 +38,14 @@
 
       <span class="wrap">
         <span class="heading">advanced</span>
-        <span>{{ plans[formData.values.period].advanced.price }}</span>
-        <span>{{ plans[formData.values.period].advanced.free }}</span>
+        <span>{{
+          plans[formData.values.period ? formData.values.period : "yearly"]
+            .advanced.price
+        }}</span>
+        <span>{{
+          plans[formData.values.period ? formData.values.period : "yearly"]
+            .advanced.free
+        }}</span>
       </span>
     </label>
     <label class="plan__label">
@@ -49,8 +61,14 @@
 
       <span class="wrap">
         <span class="heading">pro</span>
-        <span>{{ plans[formData.values.period].pro.price }}</span>
-        <span>{{ plans[formData.values.period].pro.free }}</span>
+        <span>{{
+          plans[formData.values.period ? formData.values.period : "yearly"].pro
+            .price
+        }}</span>
+        <span>{{
+          plans[formData.values.period ? formData.values.period : "yearly"].pro
+            .free
+        }}</span>
       </span>
     </label>
 
@@ -102,8 +120,8 @@ const plans = {
 const { formData, nextStep, prevStep } = defineProps<{
   formData: {
     values: {
-      plan: string;
-      period: "monthly" | "yearly";
+      plan?: string;
+      period?: "monthly" | "yearly";
     };
     completed: boolean;
   };

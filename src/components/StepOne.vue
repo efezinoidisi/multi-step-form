@@ -32,7 +32,7 @@
 <script setup lang="ts">
 const { formData, nextStep } = defineProps<{
   formData: {
-    values: { name: string; email: string; phone: string };
+    values: { name?: string; email?: string; phone?: string };
     completed: boolean;
   };
   nextStep: () => void;
