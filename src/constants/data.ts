@@ -1,3 +1,5 @@
+import { Step } from "../types";
+
 export const plans = {
   monthly: {
     arcade: { price: "$9/mo", free: "" },
@@ -32,3 +34,55 @@ export const prices = {
     none: 0,
   },
 };
+
+export const steps: Step[] = [
+  {
+    values: {
+      name: "",
+      phone: "",
+      email: "",
+    },
+    completed: false,
+  },
+
+  {
+    values: {
+      plan: "arcade",
+      period: "yearly",
+    },
+    completed: false,
+  },
+
+  {
+    values: {
+      profile: false,
+      service: false,
+      storage: false,
+    },
+    completed: false,
+  },
+];
+
+export const sidebar = [
+  {
+    index: 1,
+    step: "step 1",
+    title: "your info",
+  },
+  {
+    index: 2,
+    step: "step 2",
+    title: "select plan",
+  },
+
+  {
+    index: 3,
+    step: "step 3",
+    title: "add-ons",
+  },
+  {
+    index: 4,
+    step: "step 4",
+    title: "summary",
+  },
+];

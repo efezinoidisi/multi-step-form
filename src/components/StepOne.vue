@@ -69,6 +69,8 @@ label {
   flex-direction: column;
   margin-bottom: 1rem;
   color: var(--marine-blue);
+  gap: 0.2rem;
+  font-weight: 500;
 }
 
 .form-one {
@@ -85,9 +87,15 @@ input {
   outline: none;
   border: 1px solid var(--light-gray);
   font-size: 1.2rem;
+  color: var(--marine-blue);
+  font-weight: 600;
 
   &:focus-within {
     border-color: var(--purplish-blue);
+  }
+
+  &[type="text"] {
+    text-transform: capitalize;
   }
 
   &.error {
@@ -97,6 +105,7 @@ input {
 
 input::placeholder {
   color: var(--cool-gray);
+  text-transform: none;
 }
 
 button[type="submit"] {

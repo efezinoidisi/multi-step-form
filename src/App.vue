@@ -41,38 +41,10 @@ import StepFour from "./components/StepFour.vue";
 import StepOne from "./components/StepOne.vue";
 import StepThree from "./components/StepThree.vue";
 import StepTwo from "./components/StepTwo.vue";
-import { Step } from "./types";
+import { steps } from "./constants/data";
 
 const isFormCompleted = ref(false);
 const currentStep = ref(0);
-
-const steps: Step[] = [
-  {
-    values: {
-      name: "",
-      phone: "",
-      email: "",
-    },
-    completed: false,
-  },
-
-  {
-    values: {
-      plan: "arcade",
-      period: "yearly",
-    },
-    completed: false,
-  },
-
-  {
-    values: {
-      profile: false,
-      service: false,
-      storage: false,
-    },
-    completed: false,
-  },
-];
 
 const formSteps = reactive(steps);
 

@@ -56,19 +56,13 @@
 </template>
 
 <script setup lang="ts">
-const { formData, prevStep, nextStep, period } = defineProps<{
-  formData: {
-    values: {
-      service?: boolean;
-      storage?: boolean;
-      profile?: boolean;
-    };
-    completed: boolean;
-  };
-  nextStep: () => void;
-  prevStep: () => void;
-  period?: "monthly" | "yearly";
-}>();
+import { Period, StepProps } from "../types";
+
+const { formData, prevStep, nextStep, period } = defineProps<
+  StepProps & {
+    period?: Period;
+  }
+>();
 
 function handleSubmit() {
   formData.completed = true;
@@ -92,7 +86,7 @@ label {
   border-radius: 0.5rem;
   display: flex;
   gap: 1.3rem;
-  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   &.checked {
     border-color: var(--purplish-blue);

@@ -2,7 +2,7 @@
   <div class="container">
     <ul>
       <li
-        v-for="item in data"
+        v-for="item in sidebar"
         class="step-wrap"
         :class="item.index - 1 === currentStep ? 'active' : ''"
       >
@@ -17,33 +17,11 @@
 </template>
 
 <script setup lang="ts">
+import { sidebar } from "../constants/data";
+
 const { currentStep } = defineProps<{
   currentStep: number;
 }>();
-
-const data = [
-  {
-    index: 1,
-    step: "step 1",
-    title: "your info",
-  },
-  {
-    index: 2,
-    step: "step 2",
-    title: "select plan",
-  },
-
-  {
-    index: 3,
-    step: "step 3",
-    title: "add-ons",
-  },
-  {
-    index: 4,
-    step: "step 4",
-    title: "summary",
-  },
-];
 </script>
 
 <style scoped>

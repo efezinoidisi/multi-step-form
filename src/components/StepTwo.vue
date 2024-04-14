@@ -119,17 +119,8 @@
 
 <script lang="ts" setup>
 import { plans } from "../constants/data";
-const { formData, nextStep, prevStep } = defineProps<{
-  formData: {
-    values: {
-      plan?: string;
-      period?: "monthly" | "yearly";
-    };
-    completed: boolean;
-  };
-  nextStep: () => void;
-  prevStep: () => void;
-}>();
+import { StepProps } from "../types";
+const { formData, nextStep, prevStep } = defineProps<StepProps>();
 
 function handleSubmit() {
   const { plan, period } = formData.values;
@@ -169,6 +160,7 @@ input.plan {
   padding: 0.9rem 1rem;
   border-radius: 0.5rem;
   align-items: flex-start;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   .wrap {
     display: flex;

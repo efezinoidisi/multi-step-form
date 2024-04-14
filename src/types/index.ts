@@ -1,6 +1,8 @@
+export type Period = "monthly" | "yearly";
+
 export type StepValues = {
   plan?: "arcade" | "advanced" | "pro";
-  period?: "monthly" | "yearly";
+  period?: Period;
   name?: string;
   email?: string;
   phone?: string;
@@ -12,4 +14,13 @@ export type StepValues = {
 export type Step = {
   values: StepValues;
   completed: boolean;
+};
+
+export type StepProps = {
+  formData: {
+    values: StepValues;
+    completed: boolean;
+  };
+  nextStep: () => void;
+  prevStep: () => void;
 };
