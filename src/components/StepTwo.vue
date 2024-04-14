@@ -230,6 +230,10 @@ input.plan {
   }
 }
 
+.step-controls {
+  position: absolute;
+}
+
 @media screen and (min-width: 47.8125rem) {
   main {
     position: relative;

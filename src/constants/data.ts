@@ -11,3 +11,24 @@ export const plans = {
     pro: { price: "$150/yr", free: "2 months free" },
   },
 };
+
+export const prices = {
+  monthly: {
+    arcade: 9,
+    advanced: 12,
+    pro: 15,
+  },
+
+  yearly: {
+    arcade: 90,
+    advanced: 120,
+    pro: 150,
+  },
+
+  extras: {
+    service: 1,
+    profile: 2,
+    storage: 2,
+    none: 0,
+  },
+};

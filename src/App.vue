@@ -19,15 +19,16 @@
         :formData="formSteps[2]"
         :nextStep="nextStep"
         :prevStep="prevStep"
+        :period="stepValues.period"
       />
 
       <StepFour
-        v-if="currentStep === 3"
+        v-if="currentStep === 3 && !isFormCompleted"
         :formValues="stepValues"
         :nextStep="nextStep"
         :prevStep="prevStep"
       />
-      <Success v-show="isFormCompleted" />
+      <Success v-if="isFormCompleted" />
     </main>
   </div>
 </template>
@@ -88,7 +89,6 @@ function nextStep() {
     currentStep.value === formSteps.length &&
     formSteps.every((step) => step.completed)
   ) {
-    currentStep.value = 5;
     isFormCompleted.value = true;
   }
   if (currentStep.value >= formSteps.length) return;
@@ -113,6 +113,7 @@ main {
   width: 90%;
   padding: 2rem 1rem;
   border-radius: 8px;
+  min-height: 30vh;
 }
 
 @media screen and (min-width: 47.8125rem) {

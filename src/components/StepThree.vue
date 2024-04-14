@@ -15,7 +15,7 @@
         <span class="text">Access to multiplayer games</span>
       </span>
 
-      <span>+$1/mo</span>
+      <span>+${{ period === "monthly" ? "1/mo" : "10/yr" }}</span>
     </label>
 
     <label :class="formData.values.storage ? 'checked' : ''">
@@ -30,7 +30,7 @@
         <span class="text">Extra 1TB of cloud save</span>
       </span>
 
-      <span>+$2/mo</span>
+      <span>+${{ period === "monthly" ? "2/mo" : "20/yr" }}</span>
     </label>
 
     <label :class="formData.values.profile ? 'checked' : ''">
@@ -45,7 +45,7 @@
         <span class="text">Custom theme on your profile</span>
       </span>
 
-      <span>+$2/mo</span>
+      <span>+${{ period === "monthly" ? "2/mo" : "20/yr" }}</span>
     </label>
 
     <div class="step-controls">
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-const { formData, prevStep, nextStep } = defineProps<{
+const { formData, prevStep, nextStep, period } = defineProps<{
   formData: {
     values: {
       service?: boolean;
@@ -67,6 +67,7 @@ const { formData, prevStep, nextStep } = defineProps<{
   };
   nextStep: () => void;
   prevStep: () => void;
+  period?: "monthly" | "yearly";
 }>();
 
 function handleSubmit() {
@@ -116,5 +117,9 @@ label {
   .text {
     color: var(--cool-gray);
   }
+}
+
+.step-controls {
+  position: absolute;
 }
 </style>

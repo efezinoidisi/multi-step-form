@@ -74,7 +74,7 @@ button[type="submit"] {
 }
 
 .step-controls {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background-color: var(--white);
   display: flex;
@@ -98,5 +98,9 @@ button[type="submit"] {
     flex-direction: column;
     justify-content: center;
     padding-block: 2rem;
+  }
+
+  .step-controls {
+    position: absolute;
   }
 }
