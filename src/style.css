@@ -43,10 +43,32 @@ li {
 
 button {
   cursor: pointer;
+  background-color: inherit;
+  border: none;
 }
 
 button[type="submit"] {
   text-transform: capitalize;
+}
+
+.next-btn {
+  background-color: var(--marine-blue);
+  color: var(--white);
+  padding: 0.7rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.3rem;
+}
+
+.step-title {
+  color: var(--marine-blue);
+  font-size: 2rem;
+  letter-spacing: 0.07rem;
+}
+
+.step-desc {
+  color: var(--cool-gray);
+  font-size: 1.2rem;
+  line-height: 1.4;
 }
 
 @media screen and (min-width: 47.8125rem) {

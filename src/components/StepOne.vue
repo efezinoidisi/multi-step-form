@@ -1,10 +1,19 @@
 <template>
-  <h2>Personal info</h2>
-  <p>Please provide your name, email address and phone number.</p>
-  <form @submit.prevent="handleSubmit">
+  <h2 class="step-title">Personal info</h2>
+  <p class="step-desc">
+    Please provide your name, email address and phone number.
+  </p>
+  <form @submit.prevent="handleSubmit" class="form-one">
     <label>
       name
-      <input type="text" name="name" id="name" v-model="formData.values.name" />
+      <input
+        type="text"
+        name="name"
+        id="name"
+        v-model="formData.values.name"
+        placeholder="e.g. Stephen King"
+        required
+      />
     </label>
 
     <label>
@@ -14,6 +23,8 @@
         name="email"
         id="email"
         v-model="formData.values.email"
+        placeholder="e.g. stepheking@lorem.com"
+        required
       />
     </label>
 
@@ -24,9 +35,11 @@
         name="phone"
         id="phone"
         v-model="formData.values.phone"
+        placeholder="e.g. +1 234 567 890"
+        required
       />
     </label>
-    <button type="submit">next step</button>
+    <button type="submit" class="next-btn">next step</button>
   </form>
 </template>
 
@@ -55,18 +68,32 @@ label {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  color: var(--marine-blue);
+}
+
+.form-one {
+  width: 100%;
+  margin-top: 1.4rem;
+  display: flex;
+  flex-direction: column;
 }
 
 input {
   width: 100%;
-  padding: 0.6rem;
-  border-radius: 0.5rem;
+  padding: 0.9rem;
+  border-radius: 0.3rem;
   outline: none;
-  border: 1px solid black;
+  border: 1px solid var(--light-gray);
+  font-size: 1.2rem;
 }
 
-form {
-  width: 70%;
-  margin-inline: auto;
+input::placeholder {
+  color: var(--cool-gray);
+}
+button[type="submit"] {
+  align-self: flex-end;
+  position: fixed;
+  bottom: 1rem;
+  right: 0.8rem;
 }
 </style>
