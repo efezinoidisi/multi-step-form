@@ -1,5 +1,6 @@
 <template>
-  step 1
+  <h2>Personal info</h2>
+  <p>Please provide your name, email address and phone number.</p>
   <form @submit.prevent="handleSubmit">
     <label>
       name

@@ -1,5 +1,6 @@
 <template>
-  <h2>step 2</h2>
+  <h2>select your plan</h2>
+  <p>You have the option of monthly or yearly billing</p>
 
   <form @submit.prevent="handleSubmit">
     <label class="plan__label">
@@ -98,25 +99,15 @@
       </div>
       <label for="yearly"> yearly </label>
     </div>
-    <button type="button" @click="prevStep">go back</button>
-    <button type="submit">next step</button>
+    <div>
+      <button type="button" @click="prevStep">go back</button>
+      <button type="submit">next step</button>
+    </div>
   </form>
 </template>
 
 <script lang="ts" setup>
-const plans = {
-  monthly: {
-    arcade: { price: "$9/mo", free: "" },
-    advanced: { price: "$12/mo", free: "" },
-    pro: { price: "$15/mo", free: "" },
-  },
-
-  yearly: {
-    arcade: { price: "$90/yr", free: "2 months free" },
-    advanced: { price: "$120/yr", free: "2 months free" },
-    pro: { price: "$150/yr", free: "2 months free" },
-  },
-};
+import { plans } from "../constants/data";
 const { formData, nextStep, prevStep } = defineProps<{
   formData: {
     values: {

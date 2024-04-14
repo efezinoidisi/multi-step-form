@@ -1,40 +1,49 @@
 <template>
-  <p>{{ formSteps[1].values.plan }}</p>
-  <p>{{ formSteps[0].completed }}</p>
-  <StepOne
-    v-if="currentStep === 0"
-    :formData="formSteps[0]"
-    :nextStep="nextStep"
-  />
+  <div class="wrapper">
+    <Sidebar :currentStep="currentStep" />
+    <main>
+      <StepOne
+        v-if="currentStep === 0"
+        :formData="formSteps[0]"
+        :nextStep="nextStep"
+      />
+      <StepTwo
+        v-if="currentStep === 1"
+        :formData="formSteps[1]"
+        :nextStep="nextStep"
+        :prevStep="prevStep"
+      />
 
-  <p>{{ currentStep }}</p>
-  <StepTwo
-    v-if="currentStep === 1"
-    :formData="formSteps[1]"
-    :nextStep="nextStep"
-    :prevStep="prevStep"
-  />
+      <StepThree
+        v-if="currentStep === 2"
+        :formData="formSteps[2]"
+        :nextStep="nextStep"
+        :prevStep="prevStep"
+      />
+
+      <StepFour
+        v-if="currentStep === 3"
+        :formValues="stepValues"
+        :nextStep="nextStep"
+        :prevStep="prevStep"
+      />
+      <Success v-show="isFormCompleted" />
+    </main>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
+import Success from "./components/Confirmation.vue";
+import Sidebar from "./components/Sidebar.vue";
+import StepFour from "./components/StepFour.vue";
 import StepOne from "./components/StepOne.vue";
+import StepThree from "./components/StepThree.vue";
 import StepTwo from "./components/StepTwo.vue";
+import { Step } from "./types";
 
+const isFormCompleted = ref(false);
 const currentStep = ref(0);
-
-type StepValues = {
-  plan?: string;
-  period?: "monthly" | "yearly";
-  name?: string;
-  email?: string;
-  phone?: string;
-};
-
-type Step = {
-  values: StepValues;
-  completed: boolean;
-};
 
 const steps: Step[] = [
   {
@@ -48,8 +57,17 @@ const steps: Step[] = [
 
   {
     values: {
-      plan: "",
+      plan: "arcade",
       period: "yearly",
+    },
+    completed: false,
+  },
+
+  {
+    values: {
+      profile: false,
+      service: false,
+      storage: false,
     },
     completed: false,
   },
@@ -57,8 +75,23 @@ const steps: Step[] = [
 
 const formSteps = reactive(steps);
 
+const stepValues = computed(() => {
+  return formSteps
+    .map((step) => step.values)
+    .reduce((sum, step) => {
+      return { ...sum, ...step };
+    }, {});
+});
+
 function nextStep() {
-  if (currentStep.value >= steps.length - 1) return;
+  if (
+    currentStep.value === formSteps.length &&
+    formSteps.every((step) => step.completed)
+  ) {
+    currentStep.value = 5;
+    isFormCompleted.value = true;
+  }
+  if (currentStep.value >= formSteps.length) return;
   currentStep.value++;
 }
 
@@ -69,4 +102,40 @@ function prevStep() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  display: grid;
+}
+
+main {
+  margin-top: -4.8rem;
+  background-color: var(--white);
+  width: 90%;
+  margin-inline: auto;
+  padding: 2rem 1rem;
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 47.8125rem) {
+  .wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var(--white);
+    padding: 0.6rem;
+    height: 80vh;
+    width: 85%;
+    margin-inline: auto;
+    border-radius: 0.5rem;
+  }
+
+  main {
+    grid-column: span 2;
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .wrapper {
+    width: 70%;
+  }
+}
+</style>
