@@ -230,24 +230,6 @@ input.plan {
   }
 }
 
-.step-controls {
-  position: absolute;
-  bottom: 0;
-  background-color: var(--white);
-  display: flex;
-  justify-content: space-between;
-  padding: 0.7rem;
-  width: 100%;
-  left: 0;
-  right: 0;
-
-  button:first-of-type {
-    text-transform: capitalize;
-    color: var(--cool-gray);
-    font-size: 1.2rem;
-  }
-}
-
 @media screen and (min-width: 47.8125rem) {
   main {
     position: relative;
