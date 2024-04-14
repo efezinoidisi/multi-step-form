@@ -92,6 +92,7 @@ label {
   border-radius: 0.5rem;
   display: flex;
   gap: 1.3rem;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 
   &.checked {
     border-color: var(--purplish-blue);
@@ -116,6 +117,10 @@ label {
 
   .text {
     color: var(--cool-gray);
+  }
+
+  &:hover {
+    border-color: var(--purplish-blue);
   }
 }
 

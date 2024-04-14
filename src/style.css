@@ -47,6 +47,7 @@ button {
   cursor: pointer;
   background-color: inherit;
   border: none;
+  transition: all 0.2s linear;
 }
 
 button[type="submit"] {
@@ -59,6 +60,10 @@ button[type="submit"] {
   padding: 0.7rem 1rem;
   border-radius: 0.4rem;
   font-size: 1.3rem;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .step-title {
@@ -88,6 +93,10 @@ button[type="submit"] {
     text-transform: capitalize;
     color: var(--cool-gray);
     font-size: 1.2rem;
+
+    &:hover {
+      color: var(--marine-blue);
+    }
   }
 }
 

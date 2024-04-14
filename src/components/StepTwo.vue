@@ -24,7 +24,7 @@
             plans[formData.values.period ? formData.values.period : "yearly"]
               .arcade.price
           }}</span>
-          <span>{{
+          <span class="visible">{{
             plans[formData.values.period ? formData.values.period : "yearly"]
               .arcade.free
           }}</span>
@@ -46,7 +46,7 @@
 
         <span class="wrap">
           <span class="heading">advanced</span>
-          <span>{{
+          <span class="visible">{{
             plans[formData.values.period ? formData.values.period : "yearly"]
               .advanced.price
           }}</span>
@@ -76,7 +76,7 @@
             plans[formData.values.period ? formData.values.period : "yearly"]
               .pro.price
           }}</span>
-          <span>{{
+          <span class="visible">{{
             plans[formData.values.period ? formData.values.period : "yearly"]
               .pro.free
           }}</span>
@@ -147,6 +147,10 @@ function handleSubmit() {
   margin-top: 2rem;
 }
 
+.visible {
+  animation: fade-out 3s 0.5s 1;
+}
+
 .plan-wrap {
   display: flex;
   flex-direction: column;
@@ -187,6 +191,10 @@ input.plan {
     border-color: var(--purplish-blue);
     background-color: var(--magnolia);
   }
+
+  &:hover {
+    border-color: var(--purplish-blue);
+  }
 }
 
 .period__wrap {
@@ -217,7 +225,7 @@ input.plan {
       height: 1rem;
       background-color: inherit;
       border-radius: 50%;
-      transition: all 0.2s linear;
+      transition: all 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     }
 
     input[type="radio"] {
@@ -252,6 +260,16 @@ input.plan {
 
   .period__wrap {
     padding-block: 0.8rem;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 </style>

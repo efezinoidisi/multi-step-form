@@ -85,6 +85,14 @@ input {
   outline: none;
   border: 1px solid var(--light-gray);
   font-size: 1.2rem;
+
+  &:focus-within {
+    border-color: var(--purplish-blue);
+  }
+
+  &.error {
+    border-color: var(--strawberry-red);
+  }
 }
 
 input::placeholder {

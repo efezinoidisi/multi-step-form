@@ -126,6 +126,10 @@ const total = planPrice + addOnsPrice;
   color: var(--cool-gray);
   font-size: 1.1rem;
   font-weight: 500;
+
+  &:hover {
+    color: var(--purplish-blue);
+  }
 }
 
 .price {
@@ -143,5 +147,9 @@ const total = planPrice + addOnsPrice;
     font-weight: 600;
     font-size: 1.2rem;
   }
+}
+
+.next-btn {
+  background-color: var(--purplish-blue);
 }
 </style>

@@ -5,7 +5,6 @@
         v-for="item in data"
         class="step-wrap"
         :class="item.index - 1 === currentStep ? 'active' : ''"
-        @click="currentStep = item.index - 1"
       >
         <span class="index">{{ item.index }}</span>
         <p>
@@ -76,7 +75,8 @@ ul {
   border: 1px solid var(--white);
   color: white;
   border-radius: 50%;
-  padding: 0.5rem 0.8rem;
+  padding: 0.6rem 0.9rem;
+  transition: background-color 0.3s cubic-bezier(0.47, 0, 0.745, 0.715);
 }
 
 .active {
@@ -113,11 +113,17 @@ ul {
   }
 
   .step-wrap .step {
-    color: var(--light-gray);
+    color: var(--pastel-blue);
+  }
+
+  .step-wrap .title {
+    font-weight: 500;
+    font-size: 1.1rem;
   }
 
   ul {
     flex-direction: column;
+    gap: 2.3rem;
   }
 }
 </style>
