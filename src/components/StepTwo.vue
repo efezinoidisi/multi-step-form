@@ -1,77 +1,88 @@
 <template>
-  <h2>select your plan</h2>
-  <p>You have the option of monthly or yearly billing</p>
+  <h2 class="step-title">Select your plan</h2>
+  <p class="step-desc">You have the option of monthly or yearly billing</p>
 
-  <form @submit.prevent="handleSubmit">
-    <label class="plan__label">
-      <img src="../assets/images/icon-arcade.svg" alt="" />
-      <input
-        type="radio"
-        name="plan"
-        id="arcade"
-        value="arcade"
-        v-model="formData.values.plan"
-        class="plan"
-      />
+  <form @submit.prevent="handleSubmit" class="form-two">
+    <div class="plan-wrap">
+      <label
+        class="plan__label"
+        :class="formData.values.plan === 'arcade' ? 'active' : ''"
+      >
+        <img src="../assets/images/icon-arcade.svg" alt="" />
+        <input
+          type="radio"
+          name="plan"
+          id="arcade"
+          value="arcade"
+          v-model="formData.values.plan"
+          class="plan"
+        />
 
-      <span class="wrap">
-        <span class="heading">arcade</span>
-        <span>{{
-          plans[formData.values.period ? formData.values.period : "yearly"]
-            .arcade.price
-        }}</span>
-        <span>{{
-          plans[formData.values.period ? formData.values.period : "yearly"]
-            .arcade.free
-        }}</span>
-      </span>
-    </label>
-    <label class="plan__label">
-      <img src="../assets/images/icon-advanced.svg" alt="" />
-      <input
-        type="radio"
-        name="plan"
-        id="advanced"
-        value="advanced"
-        v-model="formData.values.plan"
-        class="plan"
-      />
+        <span class="wrap">
+          <span class="heading">arcade</span>
+          <span>{{
+            plans[formData.values.period ? formData.values.period : "yearly"]
+              .arcade.price
+          }}</span>
+          <span>{{
+            plans[formData.values.period ? formData.values.period : "yearly"]
+              .arcade.free
+          }}</span>
+        </span>
+      </label>
+      <label
+        class="plan__label"
+        :class="formData.values.plan === 'advanced' ? 'active' : ''"
+      >
+        <img src="../assets/images/icon-advanced.svg" alt="" />
+        <input
+          type="radio"
+          name="plan"
+          id="advanced"
+          value="advanced"
+          v-model="formData.values.plan"
+          class="plan"
+        />
 
-      <span class="wrap">
-        <span class="heading">advanced</span>
-        <span>{{
-          plans[formData.values.period ? formData.values.period : "yearly"]
-            .advanced.price
-        }}</span>
-        <span>{{
-          plans[formData.values.period ? formData.values.period : "yearly"]
-            .advanced.free
-        }}</span>
-      </span>
-    </label>
-    <label class="plan__label">
-      <img src="../assets/images/icon-pro.svg" alt="" />
-      <input
-        type="radio"
-        name="plan"
-        id="pro"
-        value="pro"
-        v-model="formData.values.plan"
-        class="plan"
-      />
+        <span class="wrap">
+          <span class="heading">advanced</span>
+          <span>{{
+            plans[formData.values.period ? formData.values.period : "yearly"]
+              .advanced.price
+          }}</span>
+          <span>{{
+            plans[formData.values.period ? formData.values.period : "yearly"]
+              .advanced.free
+          }}</span>
+        </span>
+      </label>
+      <label
+        class="plan__label"
+        :class="formData.values.plan === 'pro' ? 'active' : ''"
+      >
+        <img src="../assets/images/icon-pro.svg" alt="" />
+        <input
+          type="radio"
+          name="plan"
+          id="pro"
+          value="pro"
+          v-model="formData.values.plan"
+          class="plan"
+        />
 
-      <span class="wrap">
-        <span class="heading">pro</span>
-        <span>{{
-          plans[formData.values.period ? formData.values.period : "yearly"].pro
-            .price
-        }}</span>
-        <span>{{
-          plans[formData.values.period ? formData.values.period : "yearly"].pro
-            .free
-        }}</span>
-      </span>
-    </label>
+        <span class="wrap">
+          <span class="heading">pro</span>
+          <span>{{
+            plans[formData.values.period ? formData.values.period : "yearly"]
+              .pro.price
+          }}</span>
+          <span>{{
+            plans[formData.values.period ? formData.values.period : "yearly"]
+              .pro.free
+          }}</span>
+        </span>
+      </label>
+    </div>
 
     <div class="period__wrap">
       <p>monthly</p>
@@ -99,9 +110,9 @@
       </div>
       <label for="yearly"> yearly </label>
     </div>
-    <div>
+    <div class="step-controls">
       <button type="button" @click="prevStep">go back</button>
-      <button type="submit">next step</button>
+      <button type="submit" class="next-btn">next step</button>
     </div>
   </form>
 </template>
@@ -131,6 +142,17 @@ function handleSubmit() {
 </script>
 
 <style scoped>
+.form-two {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.plan-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
 input.plan {
   display: none;
 }
@@ -138,39 +160,64 @@ input.plan {
 .plan__label {
   display: flex;
   gap: 0.6rem;
-  border: 1px solid black;
-  width: fit-content;
-  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-gray);
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 0.5rem;
+  align-items: flex-start;
 
   .wrap {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    color: var(--marine-blue);
+
+    span:nth-child(2) {
+      color: var(--cool-gray);
+    }
   }
 
   .heading {
     text-transform: capitalize;
     font-weight: 600;
+    font-size: 1.3rem;
+  }
+
+  &.active {
+    border-color: var(--purplish-blue);
+    background-color: var(--magnolia);
   }
 }
 
 .period__wrap {
   display: flex;
-  gap: 0.7rem;
+  gap: 1.4rem;
+  background-color: var(--magnolia);
+  justify-content: center;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  text-transform: capitalize;
+  margin-top: 2rem;
 
   .input__wrap {
     background-color: black;
-    border-radius: 1rem;
-    padding: 0.2rem;
+    border-radius: 1.3rem;
+    padding: 0.2rem 0.1rem;
+    height: 1.5rem;
+    width: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
     label {
       display: inline-block;
-      width: 2rem;
-      height: 2rem;
+      width: 1rem;
+      height: 1rem;
       background-color: inherit;
       border-radius: 50%;
+      transition: all 0.2s linear;
     }
 
     input[type="radio"] {
@@ -180,6 +227,45 @@ input.plan {
         background-color: white;
       }
     }
+  }
+}
+
+.step-controls {
+  position: absolute;
+  bottom: 0;
+  background-color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem;
+  width: 100%;
+  left: 0;
+  right: 0;
+
+  button:first-of-type {
+    text-transform: capitalize;
+    color: var(--cool-gray);
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 47.8125rem) {
+  main {
+    position: relative;
+  }
+
+  .plan-wrap {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .plan__label {
+    flex-direction: column;
+    gap: 3rem;
+    flex: 1;
+  }
+
+  .period__wrap {
+    padding-block: 0.8rem;
   }
 }
 </style>

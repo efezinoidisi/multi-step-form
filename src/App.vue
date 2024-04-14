@@ -108,10 +108,9 @@ function prevStep() {
 }
 
 main {
-  margin-top: -4.8rem;
+  margin: -4.8rem auto 4rem;
   background-color: var(--white);
   width: 90%;
-  margin-inline: auto;
   padding: 2rem 1rem;
   border-radius: 8px;
 }
@@ -125,11 +124,13 @@ main {
     width: 85%;
     margin-inline: auto;
     border-radius: 0.5rem;
+    position: relative;
   }
 
   main {
     grid-column: span 2;
-    margin-top: 0;
+    margin-block: 0;
+    position: relative;
   }
 }
 

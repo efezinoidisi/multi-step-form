@@ -90,10 +90,17 @@ input {
 input::placeholder {
   color: var(--cool-gray);
 }
+
 button[type="submit"] {
   align-self: flex-end;
   position: fixed;
   bottom: 1rem;
   right: 0.8rem;
+}
+
+@media screen and (min-width: 47.8125rem) {
+  button[type="submit"] {
+    position: absolute;
+  }
 }
 </style>
