@@ -12,8 +12,10 @@
         id="name"
         v-model="formData.values.name"
         placeholder="e.g. Stephen King"
-        required
+        :class="formErrors.name ? 'invalid' : ''"
       />
+
+      <span class="error" v-if="!!formErrors.name">{{ formErrors.name }}</span>
     </label>
 
     <label>
@@ -24,8 +26,11 @@
         id="email"
         v-model="formData.values.email"
         placeholder="e.g. stepheking@lorem.com"
-        required
+        :class="formErrors.email ? 'invalid' : ''"
       />
+      <span class="error" v-if="!!formErrors.email">{{
+        formErrors.email
+      }}</span>
     </label>
 
     <label>
@@ -36,14 +41,20 @@
         id="phone"
         v-model="formData.values.phone"
         placeholder="e.g. +1 234 567 890"
-        required
+        :class="formErrors.phone ? 'invalid' : ''"
       />
+
+      <span class="error" v-if="!!formErrors.phone">{{
+        formErrors.phone
+      }}</span>
     </label>
     <button type="submit" class="next-btn">next step</button>
   </form>
 </template>
 
 <script setup lang="ts">
+import { reactive, watch } from "vue";
+
 const { formData, nextStep } = defineProps<{
   formData: {
     values: { name?: string; email?: string; phone?: string };
@@ -52,10 +63,56 @@ const { formData, nextStep } = defineProps<{
   nextStep: () => void;
 }>();
 
-function handleSubmit() {
-  const { name, phone, email } = formData.values;
+const initErrors = {
+  name: "",
+  email: "",
+  phone: "",
+};
+
+const formErrors = reactive<{ name: string; email: string; phone: string }>(
+  initErrors
+);
+
+function validateForm(values: {
+  name?: string;
+  phone?: string;
+  email?: string;
+}) {
+  const { name, phone, email } = values;
+
+  if (!name || name.length < 4) {
+    formErrors.name = "minimum of 4 characters";
+  } else {
+    formErrors.name = "";
+  }
+
+  if (!phone) {
+    formErrors.phone = "This field is required";
+  } else {
+    formErrors.phone = "";
+  }
+
+  const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+  if (!email || !emailRegex.test(email)) {
+    formErrors.email = "invalid email";
+  } else {
+    formErrors.email = "";
+  }
 
   if (name && phone && email) {
+    return true;
+  }
+
+  return false;
+}
+
+watch(formData.values, () => {
+  validateForm(formData.values);
+});
+
+function handleSubmit() {
+  if (validateForm(formData.values)) {
     formData.completed = true;
     nextStep();
   }
@@ -71,6 +128,15 @@ label {
   color: var(--marine-blue);
   gap: 0.2rem;
   font-weight: 500;
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--strawberry-red);
+  text-transform: none;
 }
 
 .form-one {
@@ -98,7 +164,7 @@ input {
     text-transform: capitalize;
   }
 
-  &.error {
+  &.invalid {
     border-color: var(--strawberry-red);
   }
 }

@@ -5,7 +5,7 @@
     <div class="plan">
       <div class="heading">
         <p>{{ formValues.plan }} ({{ formValues.period }})</p>
-        <button type="button">Change</button>
+        <button type="button" @click="() => updateStep(1)">Change</button>
       </div>
       <p class="price">
         {{
@@ -55,6 +55,7 @@ const { formValues, nextStep, prevStep } = defineProps<{
   formValues: StepValues;
   nextStep: () => void;
   prevStep: () => void;
+  updateStep: (value: number) => void;
 }>();
 
 const planPrice =

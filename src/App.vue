@@ -27,6 +27,7 @@
         :formValues="stepValues"
         :nextStep="nextStep"
         :prevStep="prevStep"
+        :updateStep="updateStep"
       />
       <Success v-if="isFormCompleted" />
     </main>
@@ -71,6 +72,10 @@ function prevStep() {
   if (currentStep.value === 0) return;
 
   currentStep.value--;
+}
+
+function updateStep(value: number) {
+  currentStep.value = value;
 }
 </script>
 
